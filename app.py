@@ -7,9 +7,14 @@ from gtts import gTTS
 app = Flask(__name__)
 
 # Load the trained model
-model_path = r'D:\Detection\model\model_avg.h5'
-model = tf.keras.models.load_model(model_path)
+# model_path = r'D:\Detection\model\model_avg.h5'
+# model = tf.keras.models.load_model(model_path)
+base_dir = os.path.dirname(__file__)
+# Construct the relative path to the model
+model_path = os.path.join(base_dir, 'model', 'model_avg.h5')
 
+# Load the model
+model = tf.keras.models.load_model(model_path)
 # Labels and plant information
 labels = {
     0: 'Aloevera', 1: 'Amla', 2: 'Amruta_Balli', 3: 'Arali', 4: 'Ashoka', 5: 'Ashwagandha', 6: 'Avacado', 7: 'Bamboo', 8: 'Basale', 9: 'Betel', 10: 'Betel_Nut',
@@ -184,7 +189,7 @@ def index():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    app.run()
 
 
 
